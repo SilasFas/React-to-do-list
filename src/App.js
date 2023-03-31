@@ -8,23 +8,30 @@ function App() {
   const addTask = () => {
     setTodoList([...todoList, newTask])
   }
+
+  const deleteTask = (taskName) => {
+    setTodoList(todoList.filter((task) => task !== taskName))
+    // return if the task is not equal to the taskName
+  }
+
   return (
 
     <div className="App">
 
       <div className='addTask'>
-
         <input onChange={(event) => setNewTask(event.target.value)} />
         <button onClick={addTask}>Add Task</button>
-
-
-
       </div>
 
 
       <div className='list'>
         {todoList.map((task) => {
-          return <h1>{task}</h1>
+          return (
+            <div>
+              <h1>{task}</h1>
+              <button onClick={() => deleteTask(task)}>Delete Task</button>
+            </div>
+          )
         })}
       </div>
     </div>
